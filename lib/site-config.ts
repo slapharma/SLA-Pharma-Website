@@ -14,12 +14,22 @@ export const siteConfig = {
   },
   nav: [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about-us" },
-    { label: "What We Do", href: "/about/what-we-do" },
+    {
+      label: "About",
+      href: "/about-us",
+      children: [
+        { label: "About Us", href: "/about-us" },
+        { label: "What We Do", href: "/about/what-we-do" },
+      ],
+    },
     { label: "Partnerships", href: "/partnerships" },
     { label: "Therapeutic Areas", href: "/therapeutic-areas" },
     { label: "Contact Us", href: "/contact" },
-  ],
+  ] as ReadonlyArray<{
+    label: string;
+    href: string;
+    children?: ReadonlyArray<{ label: string; href: string }>;
+  }>,
   offices: [
     {
       region: "SWISS OFFICE",

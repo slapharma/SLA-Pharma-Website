@@ -33,11 +33,12 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div className="relative aspect-square max-w-sm mx-auto w-full">
             <Image
-              src="/logo.png"
+              src="/about-animation.gif"
               alt=""
               fill
+              unoptimized
               sizes="(min-width: 768px) 40vw, 80vw"
-              className="object-contain opacity-10"
+              className="object-contain"
             />
           </div>
           <div>
