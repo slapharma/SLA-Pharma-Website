@@ -32,14 +32,16 @@ export default function AboutPage() {
       <section className="container-page py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div className="relative aspect-square max-w-sm mx-auto w-full">
-            <Image
-              src="/about-animation.gif"
-              alt=""
-              fill
-              unoptimized
-              sizes="(min-width: 768px) 40vw, 80vw"
-              className="object-contain"
-            />
+            <div className="absolute inset-0 rounded-full overflow-hidden shadow-xl ring-1 ring-gray-200 bg-white">
+              <Image
+                src="/about-animation.gif"
+                alt=""
+                fill
+                unoptimized
+                sizes="(min-width: 768px) 40vw, 80vw"
+                className="object-cover"
+              />
+            </div>
           </div>
           <div>
             <SectionHeading align="left">Our Mission</SectionHeading>
