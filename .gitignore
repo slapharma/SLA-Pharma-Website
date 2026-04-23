@@ -44,3 +44,9 @@ next-env.d.ts
 /.claude/
 /AGENTS.md
 /CLAUDE.md
+
+# playwright scratch + local screenshots
+/.playwright-mcp/
+/live-*.png
+/replica-*.png
+/home-desktop.png
