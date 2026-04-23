@@ -13,8 +13,8 @@ export function OrganizationJsonLd() {
     sameAs: [siteConfig.social.linkedin, siteConfig.social.x],
     address: siteConfig.offices.map((o) => ({
       "@type": "PostalAddress",
-      addressCountry: o.country,
-      addressLocality: o.city,
+      addressCountry: o.lines[o.lines.length - 1],
+      streetAddress: o.lines.slice(0, -1).join(", "),
     })),
   };
   return (

@@ -1,58 +1,62 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { PageHero } from "@/components/shared/PageHero";
+import { FullBleedHero } from "@/components/shared/FullBleedHero";
 import { CtaBand } from "@/components/shared/CtaBand";
+import { SectionHeading } from "@/components/shared/SectionHeading";
+import { MindMap } from "@/components/therapeutic-areas/MindMap";
 
 export const metadata: Metadata = {
   title: "Therapeutic Areas",
   description:
-    "Over 30 years of gastrointestinal innovation across multiple therapeutic areas.",
+    "Treatments for gastrointestinal conditions, supported by clinical research.",
 };
 
 export default function TherapeuticAreasPage() {
   return (
     <>
-      <PageHero
-        title="Therapeutic Areas"
-        subtitle="Over 30 years of gastrointestinal innovation."
+      <FullBleedHero
+        image="/hero-therapeutic.jpg"
+        alt="Clinical consultation"
+        title="THERAPEUTIC AREAS"
+        subtitle="Treatments for gastrointestinal conditions, supported by clinical research"
       />
 
       <section className="container-page py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Over 30 Years of Gastrointestinal Innovation</h2>
+        <div className="rounded-xl bg-white border border-gray-200 shadow-sm p-6 md:p-10 max-w-5xl mx-auto">
+          <SectionHeading>Over 30 Years of Gastrointestinal Innovation</SectionHeading>
+          <div className="grid md:grid-cols-2 gap-10 items-center">
             <p className="text-gray-600 leading-relaxed">
-              SLA Pharma&apos;s programmes span a range of gastrointestinal conditions where there remains significant unmet patient need. We focus on therapeutic areas where our clinical expertise, regulatory experience and partner network can make a tangible difference.
+              SLA Pharma specialises in advancing therapies across a broad spectrum of gastrointestinal diseases&mdash;from hereditary colorectal conditions to proctological disorders and GI oncology.
             </p>
-          </div>
-          <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
-            <Image src="/therapeutic-areas.jpg" alt="Therapeutic areas" fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" />
+            <div className="relative aspect-square max-w-xs mx-auto w-full">
+              <div className="absolute inset-0 rounded-full overflow-hidden shadow-lg">
+                <Image
+                  src="/therapeutic-areas.jpg"
+                  alt="Therapeutic areas"
+                  fill
+                  sizes="(min-width:768px) 40vw, 80vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-gray-50 py-16 md:py-24">
-        <div className="container-page">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-10">Our Focus Areas</h2>
-          <picture>
-            <source srcSet="/mind-map-desktop.png" media="(min-width: 768px)" />
-            <Image
-              src="/mind-map-mobile.png"
-              alt="SLA Pharma therapeutic areas mind map"
-              width={1600}
-              height={1000}
-              className="mx-auto w-full max-w-5xl h-auto"
-              sizes="(min-width: 768px) 80vw, 100vw"
-            />
-          </picture>
-        </div>
+      <section className="container-page pb-16 md:pb-24">
+        <SectionHeading subtitle="Gastroenterology is at the core of everything we do. Our work spans a wide range of indications, from chronic inflammatory diseases to rare and hereditary gastrointestinal conditions.">
+          Our Gastroenterology Focus
+        </SectionHeading>
+        <MindMap />
       </section>
 
-      <section className="container-page py-16 md:py-24 text-center max-w-3xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Advancing Gastrointestinal Health Together</h2>
-        <p className="text-gray-600 leading-relaxed">
-          Our research and partnerships continue to push the frontier of gastrointestinal care &mdash; and we&apos;re always keen to hear from clinicians, researchers and partners who share that ambition.
-        </p>
+      <section className="container-page pb-16 md:pb-24">
+        <div className="rounded-xl bg-white border border-gray-200 shadow-sm p-8 md:p-12 max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Advancing Gastrointestinal Health Together</h2>
+          <p className="text-gray-600 leading-relaxed">
+            SLA Pharma collaborates with partners worldwide to shape the future of gastrointestinal care.
+          </p>
+        </div>
       </section>
 
       <CtaBand />

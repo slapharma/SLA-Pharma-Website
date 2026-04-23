@@ -1,0 +1,113 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e6]:
+      - link "Call us" [ref=e7] [cursor=pointer]:
+        - /url: tel:+441923681001
+        - img [ref=e8]
+      - link "Email us" [ref=e10] [cursor=pointer]:
+        - /url: mailto:info@slapharma.com
+        - img [ref=e11]
+      - link [ref=e13] [cursor=pointer]:
+        - /url: https://www.linkedin.com/company/slapharma/
+        - img [ref=e14]
+      - link [ref=e16] [cursor=pointer]:
+        - /url: https://x.com/SlaPharma
+        - img [ref=e17]
+    - generic [ref=e20]:
+      - link "SLA Pharma" [ref=e22] [cursor=pointer]:
+        - /url: /
+        - img "SLA Pharma" [ref=e23]
+      - navigation [ref=e24]:
+        - link "Home" [ref=e25] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e27]:
+          - text: About
+          - img [ref=e28]
+        - link "Therapeutic Areas" [ref=e30] [cursor=pointer]:
+          - /url: /therapeutic-areas
+        - link "Contact Us" [ref=e31] [cursor=pointer]:
+          - /url: /contact
+          - generic [ref=e32]: Contact Us
+          - img [ref=e33]
+  - main [ref=e35]:
+    - generic [ref=e42]:
+      - heading "ABOUT SLA PHARMA" [level=1] [ref=e43]
+      - paragraph [ref=e44]: Pioneering gastrointestinal health solutions since 1997
+    - generic [ref=e52]:
+      - heading "Our Mission" [level=2] [ref=e53]
+      - paragraph [ref=e54]: At SLA Pharma, our mission is to improve patient lives by advancing innovative therapies across the spectrum of gastroenterological conditions. We focus on identifying known chemical entities to repurpose for new pharmacological indications bringing targeted, effective solutions to under-treated conditions in digestive health, gastrointestinal oncology, proctology, and rare GI disorders.
+      - generic [ref=e55]:
+        - generic [ref=e58]:
+          - heading "Quality Commitment" [level=3] [ref=e59]
+          - paragraph [ref=e60]: Maintaining the highest standards in research, development, and manufacturing
+        - generic [ref=e63]:
+          - heading "Research Excellence" [level=3] [ref=e64]
+          - paragraph [ref=e65]: Leading innovation in gastrointestinal health through rigorous research
+        - generic [ref=e68]:
+          - heading "Patient Focus" [level=3] [ref=e69]
+          - paragraph [ref=e70]: Putting patients first in everything we do
+    - generic [ref=e72]:
+      - heading "A Family Business with Decades of Experience and Expertise in Gastrointestinal Research, Development and Commercialisation" [level=2] [ref=e73]
+      - generic [ref=e74]:
+        - paragraph [ref=e77]: Founded by Justin Slagel, continuing the family’s commitment to innovation
+        - paragraph [ref=e80]: SLA Pharma has become a leader in clinical trial development for gastrointestinal disorders
+        - paragraph [ref=e83]: We prioritise patient well-being and strive to improve their lives through access to innovative solutions
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - heading "Our Values" [level=2] [ref=e86]
+        - paragraph [ref=e87]: The principles that guide our work and shape our culture
+      - generic [ref=e88]:
+        - generic [ref=e89]:
+          - img [ref=e91]
+          - heading "Integrity" [level=3] [ref=e93]
+          - paragraph [ref=e94]: Maintaining the highest ethical standards in all our operations and research
+        - generic [ref=e95]:
+          - img [ref=e97]
+          - heading "Innovation" [level=3] [ref=e99]
+          - paragraph [ref=e100]: Continuously pushing boundaries to develop better treatments
+        - generic [ref=e101]:
+          - img [ref=e103]
+          - heading "Patient Care" [level=3] [ref=e105]
+          - paragraph [ref=e106]: Putting patients at the heart of everything we do
+    - generic [ref=e108]:
+      - heading "Start a conversation with us today" [level=2] [ref=e109]
+      - link "Contact Us" [ref=e110] [cursor=pointer]:
+        - /url: /contact
+        - generic [ref=e111]: Contact Us
+        - img [ref=e112]
+    - generic [ref=e115]:
+      - generic [ref=e116]:
+        - img "SLA Pharma" [ref=e118]
+        - generic [ref=e119]:
+          - heading "What We Do" [level=3] [ref=e120]
+          - paragraph [ref=e121]: Leading innovation in gastrointestinal health through rigorous research & development.
+        - generic [ref=e122]:
+          - heading "Links" [level=3] [ref=e123]
+          - list [ref=e124]:
+            - listitem [ref=e125]:
+              - link "Privacy Policy" [ref=e127] [cursor=pointer]:
+                - /url: /privacy-policy
+            - listitem [ref=e128]:
+              - link "Contact Us" [ref=e130] [cursor=pointer]:
+                - /url: /contact
+            - listitem [ref=e131]:
+              - link "Partnerships" [ref=e133] [cursor=pointer]:
+                - /url: /partnerships
+        - generic [ref=e134]:
+          - heading "Social" [level=3] [ref=e135]
+          - list [ref=e136]:
+            - listitem [ref=e137]:
+              - link "LinkedIn" [ref=e139] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/slapharma/
+            - listitem [ref=e140]:
+              - link "X (Twitter)" [ref=e142] [cursor=pointer]:
+                - /url: https://x.com/SlaPharma
+      - paragraph [ref=e144]: ©2025 SLA Pharma (UK) Limited
+  - generic [ref=e146]:
+    - paragraph [ref=e148]:
+      - text: We use cookies to enhance your experience on our website. By clicking "Accept All", you consent to the use of cookies for analytics purposes.
+      - link "Learn more" [ref=e149] [cursor=pointer]:
+        - /url: /privacy-policy
+    - generic [ref=e150]:
+      - button "Reject All" [ref=e151] [cursor=pointer]
+      - button "Accept All" [ref=e152] [cursor=pointer]

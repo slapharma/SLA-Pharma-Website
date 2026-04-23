@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { siteConfig } from "@/lib/site-config";
 
 const STORAGE_KEY = "sla-cookie-consent";
 
@@ -26,16 +27,30 @@ export function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Cookie consent"
-      className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-gray-900 text-white shadow-xl md:inset-x-auto md:right-6 md:bottom-6 md:max-w-md"
+      className="fixed bottom-0 inset-x-0 z-50 bg-white/98 backdrop-blur border-t border-gray-200 shadow-lg"
     >
-      <div className="p-5">
-        <p className="text-sm leading-6">
-          We use cookies to improve your experience and analyse site traffic. See our{" "}
-          <Link href="/privacy-policy" className="underline hover:text-primary">privacy policy</Link>.
+      <div className="container-page py-3 flex flex-col md:flex-row gap-3 md:gap-6 items-start md:items-center justify-between">
+        <p className="text-sm leading-6 text-gray-700">
+          {siteConfig.cookieBanner.copy}{" "}
+          <Link href="/privacy-policy" className="text-primary underline underline-offset-2 hover:text-primary-dark">
+            Learn more
+          </Link>
         </p>
-        <div className="mt-4 flex gap-3">
-          <button type="button" onClick={() => decide("accepted")} className="btn-primary py-2 px-4 text-sm">Accept</button>
-          <button type="button" onClick={() => decide("rejected")} className="text-sm font-medium px-4 py-2 rounded-lg border border-gray-600 hover:bg-gray-800">Reject</button>
+        <div className="flex gap-2 flex-none">
+          <button
+            type="button"
+            onClick={() => decide("rejected")}
+            className="text-sm font-medium px-4 py-2 rounded border border-gray-300 text-gray-800 hover:bg-gray-50"
+          >
+            {siteConfig.cookieBanner.rejectLabel}
+          </button>
+          <button
+            type="button"
+            onClick={() => decide("accepted")}
+            className="text-sm font-semibold px-4 py-2 rounded bg-primary text-white hover:bg-primary-dark"
+          >
+            {siteConfig.cookieBanner.acceptLabel}
+          </button>
         </div>
       </div>
     </div>

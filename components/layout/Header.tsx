@@ -2,85 +2,108 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
+import {
+  PhoneIcon,
+  MailIcon,
+  LinkedInIcon,
+  XIcon,
+  MenuIcon,
+  CloseIcon,
+} from "@/components/shared/icons";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-100">
+    <header className="absolute top-0 left-0 right-0 z-40">
       <div className="container-page flex h-20 items-center justify-between">
-        <Link href="/" className="flex items-center" aria-label="SLA Pharma home">
+        <Link href="/" aria-label="SLA Pharma home" className="flex items-center">
           <Image
             src="/logo.png"
             alt="SLA Pharma"
-            width={160}
-            height={48}
-            className="h-10 w-auto"
+            width={120}
+            height={60}
+            className="h-12 w-auto drop-shadow-sm"
             priority
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7" aria-label="Primary">
-          {siteConfig.nav.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-sm font-medium transition-colors ${
-                  active ? "text-primary" : "text-gray-700 hover:text-primary"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <button
-          type="button"
-          className="md:hidden inline-flex items-center justify-center rounded p-2 text-gray-700 hover:bg-gray-100"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {open ? (
-              <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
-            ) : (
-              <>
-                <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-              </>
-            )}
-          </svg>
-        </button>
+        <div className="flex items-center gap-4 sm:gap-5">
+          <a href={`tel:${siteConfig.phoneTel}`} aria-label="Phone" className="text-white hover:text-primary mix-blend-difference">
+            <PhoneIcon className="h-5 w-5" />
+          </a>
+          <a href={`mailto:${siteConfig.email}`} aria-label="Email" className="text-white hover:text-primary mix-blend-difference">
+            <MailIcon className="h-5 w-5" />
+          </a>
+          <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-white hover:text-primary mix-blend-difference">
+            <LinkedInIcon className="h-5 w-5" />
+          </a>
+          <a href={siteConfig.social.x} target="_blank" rel="noopener noreferrer" aria-label="X" className="text-white hover:text-primary mix-blend-difference">
+            <XIcon className="h-5 w-5" />
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={open}
+            className="ml-1 inline-flex items-center justify-center rounded-full border border-white/70 bg-white/30 backdrop-blur p-2 text-white hover:bg-white hover:text-primary transition"
+          >
+            <MenuIcon className="h-5 w-5" />
+          </button>
+        </div>
       </div>
 
       {open && (
-        <nav className="md:hidden border-t border-gray-100 bg-white" aria-label="Mobile">
-          <ul className="container-page py-3">
-            {siteConfig.nav.map((item) => {
-              const active = pathname === item.href;
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className={`block rounded px-2 py-3 text-base font-medium ${
-                      active ? "text-primary" : "text-gray-800 hover:bg-gray-50"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Main menu"
+          className="fixed inset-0 z-50 bg-white animate-fade-in"
+        >
+          <div className="container-page flex h-20 items-center justify-between">
+            <Link href="/" aria-label="SLA Pharma home" onClick={() => setOpen(false)} className="flex items-center">
+              <Image src="/logo.png" alt="SLA Pharma" width={120} height={60} className="h-12 w-auto" />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+              className="inline-flex items-center justify-center rounded-full border border-gray-300 p-2 text-gray-800 hover:text-primary transition"
+            >
+              <CloseIcon className="h-5 w-5" />
+            </button>
+          </div>
+          <nav aria-label="Primary" className="container-page pt-4 pb-16">
+            <ul className="flex flex-col gap-1">
+              {siteConfig.nav.map((item) => {
+                const active = pathname === item.href;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={`block rounded-lg px-4 py-4 text-2xl sm:text-3xl font-semibold transition-colors ${
+                        active ? "text-primary" : "text-gray-900 hover:text-primary"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </div>
       )}
     </header>
   );

@@ -1,0 +1,18 @@
+[    1861ms] [LOG] Current cookies:  @ https://www.slapharma.com/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.BVGiaKSi.js:10
+[    1872ms] [WARNING] Alpine Expression Error: isHomePage is not defined
+
+Expression: "!scrolled && isHomePage"
+
+ JSHandle@node @ https://www.slapharma.com/_astro/page.6SFS2pYP.js:0
+[    1882ms] ReferenceError: isHomePage is not defined
+    at [Alpine] !scrolled && isHomePage (eval at <anonymous> (https://www.slapharma.com/_astro/page.6SFS2pYP.js:5:666), <anonymous>:3:45)
+    at https://www.slapharma.com/_astro/page.6SFS2pYP.js:5:1070
+    at ur (https://www.slapharma.com/_astro/page.6SFS2pYP.js:1:4950)
+    at https://www.slapharma.com/_astro/page.6SFS2pYP.js:5:34731
+    at n (https://www.slapharma.com/_astro/page.6SFS2pYP.js:5:18093)
+    at Object.li [as effect] (https://www.slapharma.com/_astro/page.6SFS2pYP.js:5:17881)
+    at B (https://www.slapharma.com/_astro/page.6SFS2pYP.js:1:392)
+    at https://www.slapharma.com/_astro/page.6SFS2pYP.js:1:505
+    at Function.<anonymous> (https://www.slapharma.com/_astro/page.6SFS2pYP.js:5:34725)
+    at n (https://www.slapharma.com/_astro/page.6SFS2pYP.js:5:2323)
+[    2146ms] [LOG] Swiper initialized successfully @ https://www.slapharma.com/_astro/hoisted.C331PQqt.js:0

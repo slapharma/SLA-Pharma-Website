@@ -1,0 +1,117 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "SLA Pharma home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "SLA Pharma" [ref=e5]
+      - navigation "Primary" [ref=e6]:
+        - link "Home" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - link "About Us" [ref=e8] [cursor=pointer]:
+          - /url: /about-us
+        - link "What We Do" [ref=e9] [cursor=pointer]:
+          - /url: /about/what-we-do
+        - link "Partnerships" [ref=e10] [cursor=pointer]:
+          - /url: /partnerships
+        - link "Therapeutic Areas" [ref=e11] [cursor=pointer]:
+          - /url: /therapeutic-areas
+        - link "Contact Us" [ref=e12] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e13]:
+    - generic [ref=e16]:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - heading "Trusted by Global Healthcare Professionals" [level=1]
+              - paragraph: Over 30 years of clinical expertise delivering specialist gastrointestinal therapies to patients worldwide.
+              - generic:
+                - link "Learn More":
+                  - /url: /about-us
+                  - text: Learn More
+                  - img
+      - generic [ref=e120]:
+        - heading "Proven Expertise in Gastrointestinal Health" [level=1] [ref=e121]
+        - paragraph [ref=e122]: Pioneering research, development and delivery of specialty pharmaceuticals since 1997.
+        - link "Learn More" [ref=e124] [cursor=pointer]:
+          - /url: /about-us
+          - text: Learn More
+          - img [ref=e125]
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - paragraph [ref=e34]: Our Focus
+        - heading "Gastrointestinal Medicine" [level=2] [ref=e35]
+        - paragraph [ref=e36]: SLA Pharma has built a reputation for clinical excellence and patient-centred innovation in gastrointestinal health. From early-stage research through to global market access, our teams deliver specialist therapies that make a measurable difference to patients' lives.
+        - list [ref=e37]:
+          - listitem [ref=e38]:
+            - img [ref=e40]
+            - generic [ref=e42]: Over 30 years of gastrointestinal expertise
+          - listitem [ref=e43]:
+            - img [ref=e45]
+            - generic [ref=e47]: Clinical research, regulatory and commercial capability under one roof
+          - listitem [ref=e48]:
+            - img [ref=e50]
+            - generic [ref=e52]: Patient-centred therapeutic development
+      - img "Gastrointestinal medicine research" [ref=e54]
+    - generic [ref=e56]:
+      - generic [ref=e57]:
+        - heading "Start a conversation with us today" [level=2] [ref=e58]
+        - paragraph [ref=e59]: Whether you're exploring partnerships, clinical collaboration or have a general enquiry, we'd love to hear from you.
+      - link "Contact Us" [ref=e60] [cursor=pointer]:
+        - /url: /contact
+  - contentinfo [ref=e61]:
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - img "SLA Pharma" [ref=e64]
+        - paragraph [ref=e65]: Family-owned specialty pharmaceutical company pioneering gastrointestinal health solutions since 1997.
+      - generic [ref=e66]:
+        - heading "What We Do" [level=3] [ref=e67]
+        - list [ref=e68]:
+          - listitem [ref=e69]:
+            - link "Research & Development" [ref=e70] [cursor=pointer]:
+              - /url: /about/what-we-do
+          - listitem [ref=e71]:
+            - link "Therapeutic Areas" [ref=e72] [cursor=pointer]:
+              - /url: /therapeutic-areas
+          - listitem [ref=e73]:
+            - link "Partnerships" [ref=e74] [cursor=pointer]:
+              - /url: /partnerships
+      - generic [ref=e75]:
+        - heading "Links" [level=3] [ref=e76]
+        - list [ref=e77]:
+          - listitem [ref=e78]:
+            - link "Privacy Policy" [ref=e79] [cursor=pointer]:
+              - /url: /privacy-policy
+          - listitem [ref=e80]:
+            - link "Contact" [ref=e81] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e82]:
+            - link "Partnerships" [ref=e83] [cursor=pointer]:
+              - /url: /partnerships
+      - generic [ref=e84]:
+        - heading "Social" [level=3] [ref=e85]
+        - list [ref=e86]:
+          - listitem [ref=e87]:
+            - link "LinkedIn" [ref=e88] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/sla-pharma
+              - img [ref=e89]
+          - listitem [ref=e91]:
+            - link "X (Twitter)" [ref=e92] [cursor=pointer]:
+              - /url: https://x.com/slapharma
+              - img [ref=e93]
+    - generic [ref=e96]:
+      - paragraph [ref=e97]: ©2026 SLA Pharma. All rights reserved.
+      - paragraph [ref=e98]: Registered offices in Switzerland, United Kingdom & Ireland.
+  - button "Open Next.js Dev Tools" [ref=e112] [cursor=pointer]:
+    - img [ref=e113]
+  - alert [ref=e99]
+  - dialog "Cookie consent" [ref=e100]:
+    - generic [ref=e101]:
+      - paragraph [ref=e102]:
+        - text: We use cookies to improve your experience and analyse site traffic. See our
+        - link "privacy policy" [ref=e103] [cursor=pointer]:
+          - /url: /privacy-policy
+        - text: .
+      - generic [ref=e104]:
+        - button "Accept" [ref=e105]
+        - button "Reject" [ref=e106]

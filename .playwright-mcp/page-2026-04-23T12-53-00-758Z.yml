@@ -1,0 +1,133 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e6]:
+      - link "Call us" [ref=e7] [cursor=pointer]:
+        - /url: tel:+441923681001
+        - img [ref=e8]
+      - link "Email us" [ref=e10] [cursor=pointer]:
+        - /url: mailto:info@slapharma.com
+        - img [ref=e11]
+      - link [ref=e13] [cursor=pointer]:
+        - /url: https://www.linkedin.com/company/slapharma/
+        - img [ref=e14]
+      - link [ref=e16] [cursor=pointer]:
+        - /url: https://x.com/SlaPharma
+        - img [ref=e17]
+    - generic [ref=e20]:
+      - link "SLA Pharma" [ref=e22] [cursor=pointer]:
+        - /url: /
+        - img "SLA Pharma" [ref=e23]
+      - navigation [ref=e24]:
+        - link "Home" [ref=e25] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e27]:
+          - text: About
+          - img [ref=e28]
+        - link "Therapeutic Areas" [ref=e30] [cursor=pointer]:
+          - /url: /therapeutic-areas
+        - link "Contact Us" [ref=e31] [cursor=pointer]:
+          - /url: /contact
+          - generic [ref=e32]: Contact Us
+          - img [ref=e33]
+  - main [ref=e35]:
+    - generic [ref=e42]:
+      - heading "WHAT WE DO" [level=1] [ref=e43]
+      - paragraph [ref=e44]: Identifying known chemical entities for new pharmacological indications
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - heading "Our Approach" [level=2] [ref=e48]
+        - paragraph [ref=e49]: At SLA Pharma, we specialise in identifying and developing innovative treatments for gastrointestinal disorders. Our unique approach combines scientific expertise with patient-focused solutions.
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e53]: "1"
+          - generic [ref=e54]:
+            - heading "Research & Development Excellence" [level=3] [ref=e55]
+            - paragraph [ref=e56]: SLA Pharma has over 20 years of experience in developing innovative solutions for GI disorders.
+            - list [ref=e57]:
+              - listitem [ref=e58]:
+                - img [ref=e59]
+                - generic [ref=e61]: Extensive research in gastrointestinal health
+              - listitem [ref=e62]:
+                - img [ref=e63]
+                - generic [ref=e65]: State-of-the-art development facilities
+        - generic [ref=e66]:
+          - generic [ref=e68]: "2"
+          - generic [ref=e69]:
+            - heading "Clinical Trial Expertise" [level=3] [ref=e70]
+            - paragraph [ref=e71]: Our in-house expertise in clinical trials enables us to accelerate development of innovative therapies.
+            - list [ref=e72]:
+              - listitem [ref=e73]:
+                - img [ref=e74]
+                - generic [ref=e76]: Streamlined trial processes
+              - listitem [ref=e77]:
+                - img [ref=e78]
+                - generic [ref=e80]: Global research network
+        - generic [ref=e81]:
+          - generic [ref=e83]: "3"
+          - generic [ref=e84]:
+            - heading "Global Market Access" [level=3] [ref=e85]
+            - paragraph [ref=e86]:
+              - text: We identify novel registration routes that enables
+              - strong [ref=e87]: fast track approvals
+              - text: in global markets.
+            - list [ref=e88]:
+              - listitem [ref=e89]:
+                - img [ref=e90]
+                - generic [ref=e92]: Strategic regulatory pathways
+              - listitem [ref=e93]:
+                - img [ref=e94]
+                - generic [ref=e96]: Accelerated approval processes
+      - generic [ref=e97]:
+        - heading "Our Research Focus" [level=2] [ref=e98]
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - img [ref=e102]
+            - heading "Therapeutic Development" [level=3] [ref=e104]
+            - paragraph [ref=e105]: Our research focuses on developing innovative treatments for gastrointestinal disorders, with a particular focus on conditions with limited therapeutic options.
+          - generic [ref=e106]:
+            - img [ref=e108]
+            - heading "Clinical Research" [level=3] [ref=e110]
+            - paragraph [ref=e111]: We conduct comprehensive clinical trials to ensure the safety and efficacy of our treatments, working closely with leading healthcare institutions worldwide.
+  - generic [ref=e113]:
+    - heading "Start a conversation with us today" [level=2] [ref=e114]
+    - link "Contact Us" [ref=e115] [cursor=pointer]:
+      - /url: /contact
+      - generic [ref=e116]: Contact Us
+      - img [ref=e117]
+  - contentinfo [ref=e119]:
+    - generic [ref=e120]:
+      - generic [ref=e121]:
+        - img "SLA Pharma" [ref=e123]
+        - generic [ref=e124]:
+          - heading "What We Do" [level=3] [ref=e125]
+          - paragraph [ref=e126]: Leading innovation in gastrointestinal health through rigorous research & development.
+        - generic [ref=e127]:
+          - heading "Links" [level=3] [ref=e128]
+          - list [ref=e129]:
+            - listitem [ref=e130]:
+              - link "Privacy Policy" [ref=e132] [cursor=pointer]:
+                - /url: /privacy-policy
+            - listitem [ref=e133]:
+              - link "Contact Us" [ref=e135] [cursor=pointer]:
+                - /url: /contact
+            - listitem [ref=e136]:
+              - link "Partnerships" [ref=e138] [cursor=pointer]:
+                - /url: /partnerships
+        - generic [ref=e139]:
+          - heading "Social" [level=3] [ref=e140]
+          - list [ref=e141]:
+            - listitem [ref=e142]:
+              - link "LinkedIn" [ref=e144] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/slapharma/
+            - listitem [ref=e145]:
+              - link "X (Twitter)" [ref=e147] [cursor=pointer]:
+                - /url: https://x.com/SlaPharma
+      - paragraph [ref=e149]: ©2025 SLA Pharma (UK) Limited
+  - generic [ref=e151]:
+    - paragraph [ref=e153]:
+      - text: We use cookies to enhance your experience on our website. By clicking "Accept All", you consent to the use of cookies for analytics purposes.
+      - link "Learn more" [ref=e154] [cursor=pointer]:
+        - /url: /privacy-policy
+    - generic [ref=e155]:
+      - button "Reject All" [ref=e156] [cursor=pointer]
+      - button "Accept All" [ref=e157] [cursor=pointer]

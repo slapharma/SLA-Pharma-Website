@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/shared/PageHero";
+import { FullBleedHero } from "@/components/shared/FullBleedHero";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -9,7 +9,12 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <PageHero title="Privacy Policy" subtitle="How we collect, use and protect your personal information." />
+      <FullBleedHero
+        image="/hero-about.jpg"
+        title="PRIVACY POLICY"
+        subtitle="How we collect, use and protect your personal information."
+        heightClass="h-[36vh] min-h-[280px] max-h-[400px]"
+      />
       <section className="container-page py-16 md:py-20 max-w-3xl">
         <div className="prose prose-gray max-w-none space-y-4 text-gray-700 leading-relaxed">
           <p className="text-sm text-gray-500">Last updated: {new Date().toLocaleDateString("en-GB", { month: "long", year: "numeric" })}</p>
