@@ -12,51 +12,73 @@ type Quadrant = {
   Icon: (p: SVGProps<SVGSVGElement>) => React.ReactElement;
 };
 
-/* ─────────── Icons (line style, currentColor) ─────────── */
+/* ─────────── Icons (line style, currentColor) — match reference Mind Map 2.png ─────────── */
 const iconBase = {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: 1.7,
+  strokeWidth: 1.6,
   strokeLinecap: "round",
   strokeLinejoin: "round",
 } as const;
 
+/** Inflammatory — coiled small-intestine loops */
 const InflammationIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg {...iconBase} {...p}>
-    <path d="M12 2c-.5 3 1 5 2 6 2 2 3 4 3 6 0 3-2 5-5 5s-5-2-5-5c0-2 1-4 3-6 1-1 2-3 2-6z" />
-    <path d="M12 11v8" />
+    <path d="M5 9c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4 4 1.8 4 4-1.8 4-4 4-4-1.8-4-4 4-1.8 4-4-1.8-4-4-4z" />
+    <path d="M9 5c2 0 4 1.5 4 4" opacity="0.55" />
+    <path d="M9 19c2 0 4-1.5 4-4" opacity="0.55" />
   </svg>
 );
-const DnaIcon = (p: SVGProps<SVGSVGElement>) => (
+
+/** Colorectal & Oncological — looped awareness ribbon */
+const RibbonIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg {...iconBase} {...p}>
-    <path d="M5 3c4 0 4 4 7 4s3-4 7-4" />
-    <path d="M5 21c4 0 4-4 7-4s3 4 7 4" />
-    <line x1="7" y1="7" x2="17" y2="7" />
-    <line x1="7" y1="12" x2="17" y2="12" />
-    <line x1="7" y1="17" x2="17" y2="17" />
+    {/* ribbon loop at top, tails crossing into legs at bottom */}
+    <path d="M12 4c-2.5 2.5-4 5-4 7s1 3.5 2.5 5L8 21" />
+    <path d="M12 4c2.5 2.5 4 5 4 7s-1 3.5-2.5 5L16 21" />
+    <path d="M10.5 16h3" />
   </svg>
 );
-const TargetIcon = (p: SVGProps<SVGSVGElement>) => (
+
+/** Proctological — perineal/anatomical opposing curves */
+const ProctologicalIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg {...iconBase} {...p}>
-    <circle cx="12" cy="12" r="9" />
-    <circle cx="12" cy="12" r="5" />
-    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+    {/* two leaf/petal shapes meeting at center, suggestive of perianal anatomy */}
+    <path d="M12 4c-2 1.5-4 4-4 7 0 2.5 1.5 4.5 4 5" />
+    <path d="M12 4c2 1.5 4 4 4 7 0 2.5-1.5 4.5-4 5" />
+    <path d="M9 19c1 .8 2 1 3 1s2-.2 3-1" />
+    <circle cx="12" cy="13" r="0.8" fill="currentColor" stroke="none" />
   </svg>
 );
-const ActivityIcon = (p: SVGProps<SVGSVGElement>) => (
+
+/** Functional / Motility — J-shaped stomach with intestine coil below */
+const StomachBowelIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg {...iconBase} {...p}>
-    <polyline points="3 12 7 12 10 6 14 18 17 12 21 12" />
+    {/* esophagus stub */}
+    <path d="M11 3v2" />
+    {/* stomach: J-curve */}
+    <path d="M11 5c-2.5 0-4 1.6-4 3.5 0 2 1.5 3.2 3.5 3.5" />
+    <path d="M11 5c1.5 0 3 .5 3 2 0 1-.5 1.8-1 2.3" />
+    {/* small intestine coil below */}
+    <path d="M9 13c-1.5 1-1.5 2.5 0 3.5s3-.5 4.5 0 1.5 2.5 0 3.5" />
   </svg>
 );
+
+/** Central hub — full GI tract: stomach + small intestine + colon */
 const GiTractIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg {...iconBase} {...p}>
-    {/* simplified intestinal silhouette */}
-    <path d="M8 3v3" />
-    <path d="M16 3v3" />
-    <path d="M5 6h14v3a3 3 0 0 1-3 3h-1a2 2 0 0 0-2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 0-2 2v2" />
-    <path d="M9 21h7a2 2 0 0 0 2-2v-1a2 2 0 0 1 2-2" />
+    {/* esophagus */}
+    <path d="M13 3v3" />
+    {/* stomach (J-curve, hook to lower-right) */}
+    <path d="M13 6c-2.5 0-4.5 1.5-4.5 3.8 0 2 1.5 3.2 3.5 3.5" />
+    <path d="M13 6c2 0 3.5 1 3.5 2.5 0 1.2-.8 2-1.7 2.4" />
+    {/* small intestine coil center-left */}
+    <path d="M10 13.5c-2 .8-2 3 0 3.8s3-1 5-.3" />
+    {/* large intestine frame around the small */}
+    <path d="M6 11c-1 0-1.5 1-1.5 2v6c0 1.2 1 2 2.2 2H17" opacity="0.85" />
+    <path d="M17 19c1.2 0 2-.8 2-2v-2" opacity="0.85" />
   </svg>
 );
 
@@ -77,21 +99,21 @@ const quadrants: Quadrant[] = [
       "Familial Adenomatous Polyposis (FAP)",
     ],
     position: "tr",
-    Icon: DnaIcon,
+    Icon: RibbonIcon,
   },
   {
     id: "proctological",
     title: "Proctological Disorders",
     indications: ["Anal fissures", "Haemorrhoids", "Pilonidal sinus"],
     position: "bl",
-    Icon: TargetIcon,
+    Icon: ProctologicalIcon,
   },
   {
     id: "functional",
     title: "Functional / Motility Disorders",
     indications: ["Irritable bowel syndrome (IBS)", "Chronic constipation"],
     position: "br",
-    Icon: ActivityIcon,
+    Icon: StomachBowelIcon,
   },
 ];
 
