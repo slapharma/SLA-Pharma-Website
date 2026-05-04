@@ -42,10 +42,10 @@ export function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="space-y-5">
       <div className="grid sm:grid-cols-2 gap-5">
-        <Field label="First name" name="firstName" required />
-        <Field label="Last name" name="lastName" required />
+        <Field label="First Name" name="firstName" required />
+        <Field label="Last Name" name="lastName" required />
       </div>
-      <Field label="Email" name="email" type="email" required />
+      <Field label="Email Address" name="email" type="email" required />
       <div>
         <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
         <select
