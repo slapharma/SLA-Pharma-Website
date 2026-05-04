@@ -18,7 +18,7 @@ export default function PartnershipsPage() {
   return (
     <>
       <FullBleedHero
-        image="/hero-partnerships.webp"
+        image="/hero-partnerships.jpg"
         alt="Global partnerships"
         title="PARTNER WITH US"
         subtitle="Join forces with us to market innovative solutions for gastrointestinal health"
