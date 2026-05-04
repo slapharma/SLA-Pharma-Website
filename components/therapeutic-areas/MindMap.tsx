@@ -1,56 +1,72 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { SVGProps } from "react";
 
-type Satellite = {
+type Quadrant = {
   id: string;
   title: string;
   indications: string[];
-  /** 0 = top, 72 = upper-right, 144 = lower-right, 216 = lower-left, 288 = upper-left */
-  angle: number;
+  /** Visual position in the 2x2 grid */
+  position: "tl" | "tr" | "bl" | "br";
   Icon: (p: SVGProps<SVGSVGElement>) => React.ReactElement;
 };
 
+/* ─────────── Icons (line style, currentColor) ─────────── */
 const iconBase = {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: 1.8,
+  strokeWidth: 1.7,
   strokeLinecap: "round",
   strokeLinejoin: "round",
 } as const;
 
-const FlameIcon = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...iconBase} {...p}><path d="M8.5 14.5A3.5 3.5 0 0 0 12 18a3.5 3.5 0 0 0 3.5-3.5c0-1.5-.5-2-1.5-3.5S13 9 13 7c0 0-3.5 2-3.5 5.5 0 1-.5 1.5-1 2z"/><path d="M12 2c-.5 3 1 5 2 6 2 2 3 4 3 6 0 3-2 5-5 5s-5-2-5-5c0-2 1-4 3-6 1-1 2-3 2-6z"/></svg>
+const InflammationIcon = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...iconBase} {...p}>
+    <path d="M12 2c-.5 3 1 5 2 6 2 2 3 4 3 6 0 3-2 5-5 5s-5-2-5-5c0-2 1-4 3-6 1-1 2-3 2-6z" />
+    <path d="M12 11v8" />
+  </svg>
 );
 const DnaIcon = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...iconBase} {...p}><path d="M4 4c4 0 4 4 8 4s4-4 8-4"/><path d="M4 20c4 0 4-4 8-4s4 4 8 4"/><line x1="6" y1="8" x2="18" y2="8"/><line x1="6" y1="16" x2="18" y2="16"/></svg>
-);
-const ActivityIcon = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...iconBase} {...p}><polyline points="3 12 7 12 10 6 14 18 17 12 21 12"/></svg>
-);
-const PuzzleIcon = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...iconBase} {...p}><path d="M14 4h5a1 1 0 0 1 1 1v5h-1a2 2 0 1 0 0 4h1v5a1 1 0 0 1-1 1h-5v-1a2 2 0 1 0-4 0v1H5a1 1 0 0 1-1-1v-5h1a2 2 0 1 0 0-4H4V5a1 1 0 0 1 1-1h5v1a2 2 0 1 0 4 0V4z"/></svg>
+  <svg {...iconBase} {...p}>
+    <path d="M5 3c4 0 4 4 7 4s3-4 7-4" />
+    <path d="M5 21c4 0 4-4 7-4s3 4 7 4" />
+    <line x1="7" y1="7" x2="17" y2="7" />
+    <line x1="7" y1="12" x2="17" y2="12" />
+    <line x1="7" y1="17" x2="17" y2="17" />
+  </svg>
 );
 const TargetIcon = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...iconBase} {...p}><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+  <svg {...iconBase} {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="5" />
+    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+  </svg>
 );
-const CheckIcon = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...iconBase} {...p}><polyline points="20 6 9 17 4 12"/></svg>
+const ActivityIcon = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...iconBase} {...p}>
+    <polyline points="3 12 7 12 10 6 14 18 17 12 21 12" />
+  </svg>
 );
-const PlusIcon = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...iconBase} {...p}><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+const GiTractIcon = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...iconBase} {...p}>
+    {/* simplified intestinal silhouette */}
+    <path d="M8 3v3" />
+    <path d="M16 3v3" />
+    <path d="M5 6h14v3a3 3 0 0 1-3 3h-1a2 2 0 0 0-2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 0-2 2v2" />
+    <path d="M9 21h7a2 2 0 0 0 2-2v-1a2 2 0 0 1 2-2" />
+  </svg>
 );
 
-const satellites: Satellite[] = [
+const quadrants: Quadrant[] = [
   {
     id: "inflammatory",
     title: "Inflammatory Conditions",
     indications: ["Crohn's disease", "Ulcerative colitis", "Perianal Crohn's disease"],
-    angle: 0,
-    Icon: FlameIcon,
+    position: "tl",
+    Icon: InflammationIcon,
   },
   {
     id: "colorectal",
@@ -60,252 +76,224 @@ const satellites: Satellite[] = [
       "Colorectal cancer",
       "Familial Adenomatous Polyposis (FAP)",
     ],
-    angle: 72,
+    position: "tr",
     Icon: DnaIcon,
-  },
-  {
-    id: "functional",
-    title: "Functional / Motility Disorders",
-    indications: ["Irritable bowel syndrome (IBS)", "Chronic constipation"],
-    angle: 144,
-    Icon: ActivityIcon,
-  },
-  {
-    id: "rare",
-    title: "Rare GI Disorders",
-    indications: ["Short bowel syndrome", "Eosinophilic Gastro diseases"],
-    angle: 216,
-    Icon: PuzzleIcon,
   },
   {
     id: "proctological",
     title: "Proctological Disorders",
     indications: ["Anal fissures", "Haemorrhoids", "Pilonidal sinus"],
-    angle: 288,
+    position: "bl",
     Icon: TargetIcon,
+  },
+  {
+    id: "functional",
+    title: "Functional / Motility Disorders",
+    indications: ["Irritable bowel syndrome (IBS)", "Chronic constipation"],
+    position: "br",
+    Icon: ActivityIcon,
   },
 ];
 
+/** Hook: fire the entrance animation only once the component is on screen. */
+function useInView<T extends HTMLElement>(opts: IntersectionObserverInit = { threshold: 0.25 }) {
+  const ref = useRef<T | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current || inView) return;
+    const el = ref.current;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setInView(true);
+        obs.disconnect();
+      }
+    }, opts);
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [inView, opts]);
+
+  return { ref, inView };
+}
+
 export function MindMap() {
-  const [selectedId, setSelectedId] = useState<string>(satellites[0].id);
-  const selected = satellites.find((s) => s.id === selectedId) ?? satellites[0];
+  const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      <DesktopMap selectedId={selectedId} onSelect={setSelectedId} />
-      <MobileMap selectedId={selectedId} onSelect={setSelectedId} />
-      <DetailsPanel selected={selected} />
+    <div ref={ref} className="w-full max-w-5xl mx-auto">
+      {/* Outer "frame" — soft shadow, primary-tinted border, dotted bg flourishes */}
+      <div className="relative rounded-3xl border border-primary/15 bg-white shadow-[0_25px_60px_-25px_rgba(254,82,0,0.25)] overflow-hidden">
+        {/* Decorative dot grid bottom-right */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-3 right-3 h-24 w-24 opacity-40"
+          style={{
+            backgroundImage: "radial-gradient(circle, var(--color-primary) 1px, transparent 1.5px)",
+            backgroundSize: "10px 10px",
+          }}
+        />
+        {/* Decorative dot grid top-left (smaller, lighter) */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-3 left-3 h-16 w-16 opacity-25"
+          style={{
+            backgroundImage: "radial-gradient(circle, var(--color-primary) 1px, transparent 1.5px)",
+            backgroundSize: "10px 10px",
+          }}
+        />
+        {/* Faint orange radial wash */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-primary-soft)_0%,transparent_70%)] opacity-60"
+        />
+
+        <DesktopMap inView={inView} />
+        <MobileList />
+      </div>
     </div>
   );
 }
 
-function DesktopMap({
-  selectedId,
-  onSelect,
-}: {
-  selectedId: string;
-  onSelect: (id: string) => void;
-}) {
-  const size = 620;
-  const cx = size / 2;
-  const cy = size / 2;
-  const orbit = 230;
-  const hubR = 84;
-  const satR = 68;
-  const gradId = useId();
-
+/* ─────────── Desktop: 2×2 grid w/ SVG connectors + central GI hub ─────────── */
+function DesktopMap({ inView }: { inView: boolean }) {
   return (
-    <div
-      className="hidden md:block relative mx-auto mb-10"
-      style={{ width: size, height: size }}
-    >
-      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,var(--color-primary-soft)_0%,transparent_60%)]" />
-
+    <div className="hidden md:block relative p-10 lg:p-14">
+      {/* SVG connectors layer (between center hub and each card corner) */}
       <svg
-        width={size}
-        height={size}
-        viewBox={`0 0 ${size} ${size}`}
-        className="absolute inset-0"
-        aria-hidden="true"
+        aria-hidden
+        className="absolute inset-0 h-full w-full"
+        preserveAspectRatio="none"
+        viewBox="0 0 100 100"
       >
-        <defs>
-          <linearGradient id={`${gradId}-line`} x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#fe5200" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#fe5200" stopOpacity="0.15" />
-          </linearGradient>
-          <radialGradient id={`${gradId}-hub`} cx="50%" cy="45%" r="60%">
-            <stop offset="0%" stopColor="#ff7a33" />
-            <stop offset="100%" stopColor="#e9550e" />
-          </radialGradient>
-        </defs>
-
-        {satellites.map((s) => {
-          const rad = ((s.angle - 90) * Math.PI) / 180;
-          const x = cx + orbit * Math.cos(rad);
-          const y = cy + orbit * Math.sin(rad);
-          const hubEdgeX = cx + hubR * Math.cos(rad);
-          const hubEdgeY = cy + hubR * Math.sin(rad);
-          const satEdgeX = x - satR * Math.cos(rad);
-          const satEdgeY = y - satR * Math.sin(rad);
-          const active = s.id === selectedId;
-          return (
-            <line
-              key={s.id}
-              x1={hubEdgeX}
-              y1={hubEdgeY}
-              x2={satEdgeX}
-              y2={satEdgeY}
-              stroke={active ? "#fe5200" : `url(#${gradId}-line)`}
-              strokeWidth={active ? 3 : 1.5}
-              strokeLinecap="round"
-              className="transition-all duration-300"
-            />
-          );
-        })}
-
-        <circle
-          cx={cx}
-          cy={cy}
-          r={hubR + 8}
-          fill="#fe5200"
-          opacity="0.08"
-          className="animate-pulse"
-        />
-        <circle cx={cx} cy={cy} r={hubR} fill={`url(#${gradId}-hub)`} />
+        {/* The lines run from center (50,50) to inner corner of each quadrant */}
+        {[
+          { x2: 30, y2: 30, delay: 0.1 },
+          { x2: 70, y2: 30, delay: 0.2 },
+          { x2: 30, y2: 70, delay: 0.3 },
+          { x2: 70, y2: 70, delay: 0.4 },
+        ].map((line, i) => (
+          <line
+            key={i}
+            x1="50"
+            y1="50"
+            x2={line.x2}
+            y2={line.y2}
+            stroke="var(--color-primary)"
+            strokeOpacity="0.45"
+            strokeWidth="0.4"
+            strokeLinecap="round"
+            strokeDasharray="60"
+            style={
+              inView
+                ? {
+                    animation: `drawLine 0.9s ease-out ${line.delay}s both`,
+                    // @ts-expect-error -- CSS custom property
+                    "--line-length": "60",
+                  }
+                : { strokeDashoffset: 60, opacity: 0 }
+            }
+          />
+        ))}
       </svg>
 
+      {/* 2x2 grid of quadrant cards */}
+      <div className="relative grid grid-cols-2 gap-x-32 gap-y-10">
+        {quadrants.map((q, i) => (
+          <QuadrantCard key={q.id} q={q} delay={0.35 + i * 0.12} inView={inView} />
+        ))}
+      </div>
+
+      {/* Central hub (absolutely centered over the grid) */}
       <div
-        className="absolute flex items-center justify-center text-white text-center font-bold text-base leading-tight px-3 pointer-events-none select-none"
-        style={{ left: cx - hubR, top: cy - hubR, width: hubR * 2, height: hubR * 2 }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+        style={inView ? { animation: "popIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.15s both" } : { opacity: 0 }}
       >
-        Gastroenterology
+        <CentralHub />
       </div>
-
-      {satellites.map((s) => {
-        const rad = ((s.angle - 90) * Math.PI) / 180;
-        const x = cx + orbit * Math.cos(rad);
-        const y = cy + orbit * Math.sin(rad);
-        const active = s.id === selectedId;
-        const Icon = s.Icon;
-        return (
-          <button
-            key={s.id}
-            type="button"
-            onClick={() => onSelect(s.id)}
-            aria-pressed={active}
-            aria-label={`${s.title} (${s.indications.length} conditions)`}
-            className={`absolute group flex flex-col items-center justify-center rounded-full text-center transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40 ${
-              active
-                ? "bg-primary text-white shadow-xl scale-110 z-10"
-                : "bg-white text-gray-700 shadow-md hover:shadow-xl hover:-translate-y-0.5 border border-primary/20"
-            }`}
-            style={{
-              left: x - satR,
-              top: y - satR,
-              width: satR * 2,
-              height: satR * 2,
-            }}
-          >
-            <Icon className={`h-6 w-6 mb-1 ${active ? "text-white" : "text-primary"}`} />
-            <span className={`text-[11px] font-semibold leading-tight px-2 ${active ? "text-white" : "text-gray-800"}`}>
-              {s.title}
-            </span>
-          </button>
-        );
-      })}
     </div>
   );
 }
 
-function MobileMap({
-  selectedId,
-  onSelect,
-}: {
-  selectedId: string;
-  onSelect: (id: string) => void;
-}) {
+function CentralHub() {
   return (
-    <div className="md:hidden space-y-3 mb-8">
-      <div className="rounded-xl bg-gradient-to-br from-primary to-primary-dark text-white p-5 text-center shadow-md">
-        <p className="text-xs uppercase tracking-widest opacity-80 mb-1">Central focus</p>
-        <p className="font-bold text-lg">Gastroenterology</p>
-      </div>
-      <div className="grid gap-2">
-        {satellites.map((s) => {
-          const active = s.id === selectedId;
-          const Icon = s.Icon;
-          return (
-            <button
-              key={s.id}
-              type="button"
-              onClick={() => onSelect(s.id)}
-              aria-pressed={active}
-              className={`w-full flex items-center gap-3 rounded-lg p-4 text-left transition-all ${
-                active
-                  ? "bg-primary text-white shadow-md"
-                  : "bg-white border border-primary/20 text-gray-800 hover:bg-primary-soft"
-              }`}
-            >
-              <span
-                className={`flex-none inline-flex h-10 w-10 items-center justify-center rounded-full ${
-                  active ? "bg-white/20 text-white" : "bg-primary-soft text-primary"
-                }`}
-              >
-                <Icon className="h-5 w-5" />
-              </span>
-              <span className="flex-1 min-w-0">
-                <span className={`block font-semibold text-sm ${active ? "text-white" : "text-gray-900"}`}>{s.title}</span>
-                <span className={`block text-xs ${active ? "text-white/80" : "text-gray-500"}`}>
-                  {s.indications.length} condition{s.indications.length === 1 ? "" : "s"}
-                </span>
-              </span>
-              <span className={`flex-none ${active ? "text-white" : "text-primary"}`}>
-                {active ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><polyline points="6 9 12 15 18 9"/></svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><polyline points="9 6 15 12 9 18"/></svg>
-                )}
-              </span>
-            </button>
-          );
-        })}
+    <div className="relative">
+      {/* Pulsing soft halo */}
+      <span
+        aria-hidden
+        className="absolute inset-0 rounded-full bg-primary/15"
+        style={{ animation: "pulseSoft 2.6s ease-in-out infinite" }}
+      />
+      <span
+        aria-hidden
+        className="absolute -inset-2 rounded-full bg-primary/8"
+        style={{ animation: "pulseSoft 2.6s ease-in-out 0.4s infinite" }}
+      />
+      <div className="relative inline-flex h-24 w-24 items-center justify-center rounded-full bg-white border-2 border-primary/40 shadow-md">
+        <GiTractIcon className="h-10 w-10 text-primary" />
       </div>
     </div>
   );
 }
 
-function DetailsPanel({ selected }: { selected: Satellite }) {
-  const Icon = selected.Icon;
+function QuadrantCard({ q, delay, inView }: { q: Quadrant; delay: number; inView: boolean }) {
+  const Icon = q.Icon;
   return (
     <div
-      key={selected.id}
-      className="relative max-w-3xl mx-auto rounded-2xl bg-white border border-gray-200 shadow-lg p-6 md:p-8 animate-fade-in"
-      aria-live="polite"
+      className="group relative rounded-2xl bg-white border border-gray-200 px-6 py-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/40"
+      style={inView ? { animation: `popIn 0.55s cubic-bezier(0.34,1.56,0.64,1) ${delay}s both` } : { opacity: 0 }}
     >
-      <div className="flex items-center gap-4 mb-5">
-        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white shadow-sm">
-          <Icon className="h-6 w-6" />
+      <div className="flex items-center gap-3 mb-3">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft text-primary transition-transform duration-300 group-hover:scale-110">
+          <Icon className="h-5 w-5" />
         </span>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary">Focus Area</p>
-          <h3 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">{selected.title}</h3>
-        </div>
+        <h3 className="text-base font-bold text-primary leading-tight">{q.title}</h3>
       </div>
-      <ul className="grid sm:grid-cols-2 gap-3">
-        {selected.indications.map((ind) => (
-          <li
-            key={ind}
-            className="flex items-start gap-3 rounded-lg bg-primary-soft/60 px-4 py-3 border border-primary/10"
-          >
-            <CheckIcon className="mt-0.5 h-4 w-4 flex-none text-primary" />
-            <span className="text-sm text-gray-800 leading-relaxed">{ind}</span>
+      <ul className="space-y-1.5 pl-1">
+        {q.indications.map((ind) => (
+          <li key={ind} className="flex items-start gap-2 text-sm text-gray-600 leading-snug">
+            <span aria-hidden className="mt-1.5 h-1 w-1 flex-none rounded-full bg-primary" />
+            <span>{ind}</span>
           </li>
         ))}
       </ul>
-      <p className="mt-5 text-xs text-gray-500 flex items-center gap-1.5">
-        <PlusIcon className="h-3.5 w-3.5" />
-        Select another focus area to explore its indications
-      </p>
+    </div>
+  );
+}
+
+/* ─────────── Mobile: stacked list (no SVG, no animations on cards) ─────────── */
+function MobileList() {
+  return (
+    <div className="md:hidden p-5 space-y-4">
+      <div className="flex flex-col items-center text-center pb-2">
+        <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white border-2 border-primary/40 shadow-md mb-2">
+          <GiTractIcon className="h-7 w-7 text-primary" />
+        </div>
+        <p className="text-xs uppercase tracking-widest text-primary font-semibold">Gastroenterology</p>
+      </div>
+      {quadrants.map((q) => {
+        const Icon = q.Icon;
+        return (
+          <div
+            key={q.id}
+            className="rounded-2xl bg-white border border-gray-200 px-5 py-4 shadow-sm"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary-soft text-primary">
+                <Icon className="h-4 w-4" />
+              </span>
+              <h3 className="text-sm font-bold text-primary">{q.title}</h3>
+            </div>
+            <ul className="space-y-1 pl-1">
+              {q.indications.map((ind) => (
+                <li key={ind} className="flex items-start gap-2 text-sm text-gray-600">
+                  <span aria-hidden className="mt-1.5 h-1 w-1 flex-none rounded-full bg-primary" />
+                  <span>{ind}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
     </div>
   );
 }
