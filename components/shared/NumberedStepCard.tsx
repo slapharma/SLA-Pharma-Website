@@ -13,7 +13,7 @@ export function NumberedStepCard({
   bullets?: string[];
 }) {
   return (
-    <div className="rounded-xl bg-white p-6 md:p-8 shadow-md border border-gray-100 flex gap-5 md:gap-8 items-start">
+    <div className="rounded-xl bg-white p-6 md:p-8 shadow-md border-2 border-transparent hover:border-primary transition-all duration-500 ease-in-out flex gap-5 md:gap-8 items-start">
       <div className="flex-none">
         <div className="h-12 w-12 md:h-14 md:w-14 rounded-full border-2 border-primary text-primary flex items-center justify-center text-xl md:text-2xl font-bold">
           {number}

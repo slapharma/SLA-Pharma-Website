@@ -32,13 +32,16 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isHome = pathname === "/";
+  const solid = !isHome || scrolled;
+
   const headerBase =
     "fixed top-0 left-0 right-0 z-40 transition-colors duration-300";
-  const headerBg = scrolled
+  const headerBg = solid
     ? "bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm"
     : "bg-transparent";
-  const iconColor = scrolled ? "text-gray-700" : "text-white drop-shadow";
-  const navLinkColor = scrolled ? "text-gray-800" : "text-white drop-shadow";
+  const iconColor = solid ? "text-gray-700" : "text-white drop-shadow";
+  const navLinkColor = solid ? "text-gray-800" : "text-white drop-shadow";
 
   return (
     <header className={`${headerBase} ${headerBg}`}>
@@ -49,7 +52,7 @@ export function Header() {
             alt="SLA Pharma"
             width={120}
             height={60}
-            className={`h-12 w-auto ${scrolled ? "" : "drop-shadow-md"}`}
+            className="h-12 w-auto"
             priority
           />
         </Link>
@@ -140,7 +143,7 @@ export function Header() {
             aria-label="Open menu"
             aria-expanded={open}
             className={`md:hidden inline-flex items-center justify-center rounded-full p-2 transition ${
-              scrolled
+              solid
                 ? "border border-gray-300 text-gray-800 hover:text-primary"
                 : "border border-white/70 bg-white/20 backdrop-blur text-white hover:text-primary"
             }`}

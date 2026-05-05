@@ -22,7 +22,7 @@ export default function TherapeuticAreasPage() {
       />
 
       <section className="container-page py-16 md:py-24">
-        <div className="rounded-xl bg-white border border-gray-200 shadow-sm p-6 md:p-10 max-w-5xl mx-auto">
+        <div className="rounded-xl bg-white border-2 border-transparent hover:border-primary transition-all duration-500 ease-in-out shadow-sm p-6 md:p-10 max-w-5xl mx-auto">
           <SectionHeading>Over 30 Years of Gastrointestinal Innovation</SectionHeading>
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="space-y-4 text-gray-600 leading-relaxed">

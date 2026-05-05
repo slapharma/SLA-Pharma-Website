@@ -10,7 +10,7 @@ export function ValueCard({
   children: ReactNode;
 }) {
   return (
-    <div className="hover-lift rounded-xl bg-white p-8 shadow-md border border-gray-100 text-center">
+    <div className="hover-lift rounded-xl bg-white p-8 shadow-md border-2 border-transparent hover:border-primary transition-all duration-500 ease-in-out text-center">
       {icon && (
         <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary-soft text-primary mx-auto">
           {icon}

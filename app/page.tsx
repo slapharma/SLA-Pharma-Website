@@ -23,13 +23,13 @@ export default function HomePage() {
             </ul>
           </div>
           <div className="relative aspect-square max-w-md w-full mx-auto">
-            <div className="absolute inset-0 rounded-full overflow-hidden bg-gray-900 shadow-xl ring-1 ring-gray-200">
+            <div className="absolute inset-0 rounded-full overflow-hidden bg-black shadow-xl">
               <Image
                 src="/gi-medicine.jpg"
                 alt="Gastrointestinal medicine illustration"
                 fill
                 sizes="(min-width: 768px) 40vw, 90vw"
-                className="object-cover opacity-90"
+                className="object-cover object-center"
               />
             </div>
           </div>
