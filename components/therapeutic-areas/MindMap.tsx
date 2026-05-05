@@ -205,12 +205,12 @@ function QuadrantCard({ q, delay, inView }: { q: Quadrant; delay: number; inView
       style={inView ? { animation: `popIn 0.55s cubic-bezier(0.34,1.56,0.64,1) ${delay}s both` } : { opacity: 0 }}
     >
       <div className="flex items-center gap-3 mb-3">
-        <span className="relative inline-block h-12 w-12 flex-none transition-transform duration-300 group-hover:scale-110">
+        <span className="relative inline-block h-16 w-16 flex-none transition-transform duration-300 group-hover:scale-110">
           <Image
             src={q.iconSrc}
             alt=""
-            width={128}
-            height={128}
+            width={256}
+            height={256}
             className="h-full w-full object-contain"
           />
         </span>
@@ -250,12 +250,12 @@ function MobileList() {
           className="rounded-2xl bg-white border border-gray-200 px-5 py-4 shadow-sm"
         >
           <div className="flex items-center gap-3 mb-2">
-            <span className="relative inline-block h-10 w-10 flex-none">
+            <span className="relative inline-block h-12 w-12 flex-none">
               <Image
                 src={q.iconSrc}
                 alt=""
-                width={128}
-                height={128}
+                width={256}
+                height={256}
                 className="h-full w-full object-contain"
               />
             </span>
