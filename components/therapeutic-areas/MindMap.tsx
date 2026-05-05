@@ -184,7 +184,7 @@ function CentralHub() {
       />
       {/* The icon itself — extracted PNG, masked to a circle to hide the
           dashed-orbit fragment baked into the bottom-right corner of the crop */}
-      <div className="relative h-28 w-28 rounded-full overflow-hidden bg-white shadow-md">
+      <div className="relative h-[90px] w-[90px] rounded-full overflow-hidden bg-white shadow-md">
         <Image
           src={HUB_ICON}
           alt="Gastroenterology"
@@ -205,7 +205,7 @@ function QuadrantCard({ q, delay, inView }: { q: Quadrant; delay: number; inView
       style={inView ? { animation: `popIn 0.55s cubic-bezier(0.34,1.56,0.64,1) ${delay}s both` } : { opacity: 0 }}
     >
       <div className="flex items-center gap-3 mb-3">
-        <span className="relative inline-block h-20 w-20 flex-none transition-transform duration-300 group-hover:scale-110">
+        <span className="relative inline-block h-16 w-16 flex-none transition-transform duration-300 group-hover:scale-110">
           <Image
             src={q.iconSrc}
             alt=""
@@ -233,7 +233,7 @@ function MobileList() {
   return (
     <div className="md:hidden p-5 space-y-4">
       <div className="flex flex-col items-center text-center pb-2">
-        <div className="relative h-20 w-20 rounded-full overflow-hidden bg-white shadow-md mb-2">
+        <div className="relative h-16 w-16 rounded-full overflow-hidden bg-white shadow-md mb-2">
           <Image
             src={HUB_ICON}
             alt="Gastroenterology"
@@ -250,7 +250,7 @@ function MobileList() {
           className="rounded-2xl bg-white border border-gray-200 px-5 py-4 shadow-sm"
         >
           <div className="flex items-center gap-3 mb-2">
-            <span className="relative inline-block h-12 w-12 flex-none">
+            <span className="relative inline-block h-10 w-10 flex-none">
               <Image
                 src={q.iconSrc}
                 alt=""
