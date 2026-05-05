@@ -49,6 +49,35 @@
   h1, h2, h3, h4, h5, h6 { @apply text-gray-900; }
 }
 
+/* H1 / H2 size bumps (+2px to every Tailwind size class used on a heading).
+   Defined in @layer utilities so they win over Tailwind's text-Xxl utilities.
+   Why per-class: CSS has no "currentSize + 2px" — `1em` resolves to PARENT
+   font-size, so we must enumerate each Tailwind size we want to bump. */
+@layer utilities {
+  /* base */
+  h1.text-xl,  h2.text-xl  { font-size: 22px; }
+  h1.text-2xl, h2.text-2xl { font-size: 26px; }
+  h1.text-3xl, h2.text-3xl { font-size: 32px; }
+  h1.text-4xl, h2.text-4xl { font-size: 38px; }
+  h1.text-5xl, h2.text-5xl { font-size: 50px; }
+  h1.text-6xl, h2.text-6xl { font-size: 62px; }
+
+  @media (min-width: 640px) {
+    h1.sm\:text-2xl, h2.sm\:text-2xl { font-size: 26px; }
+    h1.sm\:text-3xl, h2.sm\:text-3xl { font-size: 32px; }
+    h1.sm\:text-4xl, h2.sm\:text-4xl { font-size: 38px; }
+    h1.sm\:text-5xl, h2.sm\:text-5xl { font-size: 50px; }
+    h1.sm\:text-6xl, h2.sm\:text-6xl { font-size: 62px; }
+  }
+  @media (min-width: 768px) {
+    h1.md\:text-2xl, h2.md\:text-2xl { font-size: 26px; }
+    h1.md\:text-3xl, h2.md\:text-3xl { font-size: 32px; }
+    h1.md\:text-4xl, h2.md\:text-4xl { font-size: 38px; }
+    h1.md\:text-5xl, h2.md\:text-5xl { font-size: 50px; }
+    h1.md\:text-6xl, h2.md\:text-6xl { font-size: 62px; }
+  }
+}
+
 @layer utilities {
   .hover-lift { @apply transition-all duration-300 ease-out; }
   .hover-lift:hover { @apply -translate-y-1 shadow-xl; }

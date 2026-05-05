@@ -29,7 +29,7 @@ export default function HomePage() {
                 alt="Gastrointestinal medicine illustration"
                 fill
                 sizes="(min-width: 768px) 40vw, 90vw"
-                className="object-cover object-center"
+                className="object-cover object-center scale-[1.2]"
               />
             </div>
           </div>

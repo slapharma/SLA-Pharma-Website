@@ -21,7 +21,7 @@ export function FullBleedHero({
   children?: ReactNode;
 }) {
   return (
-    <section className={`relative w-full overflow-hidden ${heightClass}`}>
+    <section className={`relative w-full overflow-hidden mt-20 ${heightClass}`}>
       <Image
         src={image}
         alt={alt}

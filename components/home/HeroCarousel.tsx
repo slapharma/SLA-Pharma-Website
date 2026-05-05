@@ -41,7 +41,7 @@ export function HeroCarousel() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className="relative h-[80vh] min-h-[560px] max-h-[820px] w-full overflow-hidden">
+    <section className="relative h-[96vh] min-h-[672px] max-h-[984px] w-full overflow-hidden">
       <Swiper
         modules={[Autoplay, EffectFade]}
         effect="fade"
