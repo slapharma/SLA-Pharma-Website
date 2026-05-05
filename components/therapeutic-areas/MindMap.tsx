@@ -205,7 +205,7 @@ function QuadrantCard({ q, delay, inView }: { q: Quadrant; delay: number; inView
       style={inView ? { animation: `popIn 0.55s cubic-bezier(0.34,1.56,0.64,1) ${delay}s both` } : { opacity: 0 }}
     >
       <div className="flex items-center gap-3 mb-3">
-        <span className="relative inline-block h-16 w-16 flex-none transition-transform duration-300 group-hover:scale-110">
+        <span className="relative inline-block h-20 w-20 flex-none transition-transform duration-300 group-hover:scale-110">
           <Image
             src={q.iconSrc}
             alt=""
