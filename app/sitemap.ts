@@ -7,6 +7,7 @@ const routes = [
   "/about/what-we-do",
   "/partnerships",
   "/therapeutic-areas",
+  "/therapeutic-areas/ortem",
   "/contact",
   "/privacy-policy",
 ];
