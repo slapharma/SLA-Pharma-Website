@@ -30,12 +30,6 @@ export default function OrtemPage() {
               ORTEM is a topical metronidazole ointment developed by SLA Pharma
               for non-healing pilonidal sinus. It is supplied as a 30 g tube.
             </p>
-            <p>
-              Pilonidal sinus is a painful condition. It most often affects
-              people from their late teens to around 40 years of age. It
-              usually starts in the hair follicles at the top of the natal
-              cleft.
-            </p>
           </div>
         </div>
       </section>
