@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { FullBleedHero } from "@/components/shared/FullBleedHero";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -18,10 +19,10 @@ export default function OrtemPage() {
   return (
     <>
       <FullBleedHero
-        image="/hero-therapeutic.jpg"
-        alt="Clinical consultation"
         title="ORTEM"
+        titleClass="text-6xl sm:text-7xl md:text-8xl"
         subtitle="Metronidazole 10% w/w ointment"
+        heightClass="h-[34vh] min-h-[280px] max-h-[400px]"
       />
 
       {/* Draft banner. Remove after regulatory approval. */}
@@ -41,15 +42,25 @@ export default function OrtemPage() {
             Information for healthcare professionals
           </p>
           <SectionHeading>About ORTEM</SectionHeading>
-          <div className="space-y-4 text-gray-600 leading-relaxed">
-            <p>
-              ORTEM (metronidazole 10% w/w, 100 mg/g ointment) is supplied as a
-              30 g tube.
-            </p>
-            <p>
-              ORTEM is an unlicensed medicine. It has no marketing
-              authorisation in the UK.
-            </p>
+          <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,320px)] gap-8 items-center">
+            <div className="space-y-4 text-gray-600 leading-relaxed">
+              <p>
+                ORTEM (metronidazole 10% w/w, 100 mg/g ointment) is supplied as
+                a 30 g tube.
+              </p>
+              <p>
+                ORTEM is an unlicensed medicine. It has no marketing
+                authorisation in the UK.
+              </p>
+            </div>
+            <Image
+              src="/ortem-pack.webp"
+              alt="ORTEM 100 mg/g ointment, 30 g carton and tube"
+              width={1448}
+              height={1086}
+              sizes="(min-width:768px) 320px, 80vw"
+              className="w-full max-w-xs mx-auto h-auto rounded-lg opacity-95"
+            />
           </div>
         </div>
       </section>
