@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FullBleedHero } from "@/components/shared/FullBleedHero";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { siteConfig } from "@/lib/site-config";
 import { HcpDialog } from "@/components/ortem/HcpDialog";
 
 const STORAGE_KEY = "ortem-hcp-confirmed";
@@ -129,6 +130,36 @@ export function OrtemContent() {
               sizes="(min-width:768px) 320px, 80vw"
               className="w-full max-w-xs mx-auto h-auto rounded-lg"
             />
+          </div>
+        </div>
+      </section>
+
+      <section className="container-page pb-16 md:pb-24">
+        <div className="max-w-4xl mx-auto rounded-xl bg-white border border-gray-200 shadow-sm p-6 md:p-10">
+          <h2 className="text-xl md:text-2xl font-bold text-primary">
+            Supply
+          </h2>
+          <div className="mt-3 space-y-3 text-gray-600 leading-relaxed">
+            <p>
+              ORTEM is supplied only in response to an unsolicited request from
+              a registered healthcare professional, for an individual patient
+              under that professional&apos;s direct responsibility. The
+              healthcare professional decides if ORTEM is suitable for the
+              patient.
+            </p>
+            <p>
+              Supply is through{" "}
+              <a
+                className="text-primary underline"
+                href={siteConfig.ortemOpsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Oxford Pharmacy Store
+              </a>
+              . Oxford Pharmacy Store asks you to log in, or to request a
+              login.
+            </p>
           </div>
         </div>
       </section>

@@ -5,6 +5,8 @@ export const siteConfig = {
   description:
     "Family-owned specialty pharmaceutical company pioneering gastrointestinal health solutions since 1997.",
   founded: "1997",
+  ortemOpsUrl:
+    "https://oxfordpharmacystore.co.uk/ops_products/ortem-metronidazole-10-ointment-1x30g/",
   phone: "+44 1923 681001",
   phoneTel: "+441923681001",
   email: "info@slapharma.com",
